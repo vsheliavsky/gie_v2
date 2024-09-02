@@ -1,0 +1,60 @@
+# Project metadata
+[project]
+name="roiti-gie-client-v2"
+dynamic=["version"]
+dependencies=[
+	"aiohttp>=3.10.5",
+]
+requires-python = ">= 3.8"
+
+readme = "README.md"
+license = {file = "LICENSE"}
+description=""
+keywords=["", ""]
+classifiers=[
+	"Programming Language :: Python :: 3",
+	"Operating System :: OS Independent",
+]
+authors = [
+	{name = "Petar Petrov", email="ppetrov@roiti.com"},
+	{name = "Julia Sulstarova", email="jsulstarova@roiti.com"},
+	{name = "Vasko Sheliavsky", email="vsheliavsky@roiti.com"},
+]
+
+[project.optional-dependencies]
+dev = [
+	"ruff",
+	"mypy",
+	"isort",
+]
+
+# [project.urls]
+# Homepage = ""
+# Documentation = ""
+# Repository = ""
+# Changelog = ""
+
+# Build System Configuration
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+# Tools
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+extend-select = ["E501"]  # Add the `line-too-long` rule to the enforced rule set. By default, Ruff omits rules that
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+exclude = [
+    "tests", "venv", ".venv",
+]
+
+[tool.isort]
+profile = "hug"
+src_paths = ["isort", "test"]

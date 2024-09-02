@@ -1,0 +1,6 @@
+"""
+"""
+
+
+class BaseGieClient:
+    raise NotImplementedError
