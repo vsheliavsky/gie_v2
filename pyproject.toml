@@ -27,6 +27,7 @@ dev = [
 	"mypy",
 	"isort",
 ]
+test = ["pytest"]
 
 # [project.urls]
 # Homepage = ""
