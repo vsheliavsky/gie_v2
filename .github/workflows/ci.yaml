@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  test:
+  format_and_lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,7 +38,27 @@ jobs:
       - name: Run isort
         run: isort .
 
-      # Uncomment when tests are added
+  # Uncomment when tests are added
+  # Test:
+  #   needs: format_and_lint
+  #   steps:
       ## Run Pytest (tests)
       # - name: Run Pytest
       #   run: pytest
+
+  # Bump version number
+  bump_version:
+    runs-on: ubuntu-latest
+
+    needs: [format_and_lint]
+    if: "!startsWith(github.event.head_commit.message, 'bump:')"
+    name: "Bump version and create changelog with commitizen"
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+      - name: Create bump and changelog
+        uses: commitizen-tools/commitizen-action@master
+        with:
+          github_token: ${{ secrets.PAT }}
+
+
