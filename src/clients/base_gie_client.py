@@ -1,11 +1,12 @@
 import datetime
 from abc import ABC, abstractmethod
-from typing import Any, Literal  # type: ignore[reportAny]
+from typing import Literal
 
 import aiohttp
 import requests
 
 from src.api_models.platform import APIType
+from src.utils.cutom_types import ParamDict, Json
 
 
 class BaseGieClient(ABC):
@@ -46,28 +47,20 @@ class BaseGieClient(ABC):
             raise ValueError("API key is missing?")
         self.__api_key = value
 
+    def _validate_session_headers(self) -> None:
+        """Validate that the session headers contain the correct API key."""
+        if "x-key" not in self.session.headers:
+            raise ValueError("Session headers must include 'x-key'")
+        if self.session.headers["x-key"] != self.api_key:
+            raise ValueError("Session headers include incorrect 'x-key'")
+
     @abstractmethod
     def fetch(
         self,
         api_type: APIType,
-        page: int | str | None,
-        reverse: str | bool | None,
-        size: int | None,
-        from_date: datetime.datetime | str | None,
-        to_date: datetime.datetime | str | None,
-        start: datetime.datetime | str | None,
-        end: datetime.datetime | str | None,
-        date: datetime.datetime | str | None,
-        updated: datetime.datetime | str | None,
-        type: str | None,
-        end_flag: str | None,
-        country: str | None,
-        company: str | None,
-        facility: str | None,
-        params: dict[str, str] | None,
+        params: ParamDict,
         endpoint: str | None,
-        news_url_item: int | str | None,
-    ) -> dict[str, Any]:
+    ) -> Json:
         """
         Helper function to fetch data from different endpoints of the API based on the provided filters and parameters.
 
@@ -111,7 +104,7 @@ class BaseGieClient(ABC):
         country: str | None,
         company: str | None,
         facility: str | None,
-    ) -> dict[str, Any]:
+    ) -> Json:
         """
         Query storage data based on the provided filters and parameters.
 
@@ -150,7 +143,7 @@ class BaseGieClient(ABC):
         country: str | None,
         company: str | None,
         facility: str | None,
-    ) -> dict[str, Any]:
+    ) -> Json:
         """
         Query the unavailability data based on the provided filters and parameters.
 
@@ -177,7 +170,7 @@ class BaseGieClient(ABC):
     @abstractmethod
     def query_eic_listing(
         self, api_type: APIType, complete: bool = False
-    ) -> dict[str, Any]:
+    ) -> Json:
         """
         Query the EIC (Energy Identification Code) listing based on the provided API type.
 
@@ -193,7 +186,7 @@ class BaseGieClient(ABC):
     @abstractmethod
     def query_news_listing(
         self, api_type: APIType, news_url: str | None
-    ) -> dict[str, Any]:
+    ) -> Json:
         """
         Query the news listing or a specific news item based on the provided API type and URL.
 
@@ -204,9 +197,4 @@ class BaseGieClient(ABC):
         Returns:
             dict[str, Any]: A dictionary containing the news data. If `news_url` is provided, returns the specific news item. Otherwise, returns a list of news items.
         """  # noqa: E501
-        ...
-
-    @abstractmethod
-    def close_session(self) -> None:
-        """Close the session."""
         ...
