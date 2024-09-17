@@ -219,7 +219,7 @@ class GieClient(BaseGieClient):
             "updated": updated,
             "type": type,
             "end_flag": end_flag,
-            "countrr": country,
+            "country": country,
             "company": company,
             "facility": facility,
         }
