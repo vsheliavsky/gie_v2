@@ -169,14 +169,14 @@ class BaseGieClient(ABC):
 
     @abstractmethod
     def query_eic_listing(
-        self, api_type: APIType, complete: bool = False
+        self, api_type: APIType, show_listing: bool = False
     ) -> Json:
         """
         Query the EIC (Energy Identification Code) listing based on the provided API type.
 
         Parameters:
             api_type (APIType): The type of API from which to query the EIC listing.
-            complete (bool, optional): Whether to retrieve the complete EIC listing. Defaults to False.
+            show_listing (bool, optional): Whether to retrieve the complete EIC listing. Defaults to False.
 
         Returns:
             dict[str, Any]: The queried EIC listing data, the structure of which depends on the API being queried.
