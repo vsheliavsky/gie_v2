@@ -1,14 +1,10 @@
-# pyright: basic
-
 import datetime
-from typing import Literal
+from typing import Any, Literal
 from urllib.parse import urljoin
 
 import requests
-
-from src.clients.base_gie_client import BaseGieClient
 from src.api_models.platform import APIType
-from src.utils.cutom_types import Json, ParamDict
+from src.clients.base_gie_client import BaseGieClient
 from src.utils.helpers import validate_input_params
 
 
@@ -47,21 +43,21 @@ class GieClient(BaseGieClient):
     def fetch(
         self,
         api_type: APIType,
-        params: ParamDict | None = None,
+        params: dict[str, Any] | None = None,
         endpoint: str | None = None,
-    ) -> Json:
+    ) -> dict[str, Any]:
         """
         Sends a GET request to a specified API endpoint with the provided parameters
         and returns the JSON response.
 
         Args:
             api_type (APIType): The type of API to interact with. Determines the root URL based on the `APIType` enum value.
-            params (ParamDict | None): A dictionary of query parameters to include in the request.
+            params (dict[str, Any] | None): A dictionary of query parameters to include in the request.
                 Only parameters with non-None values are sent. Defaults to None, in which case no parameters are included.
             endpoint (str | None): The specific API endpoint to append to the root URL. If None, the root URL is used.
 
         Returns:
-            Json: The JSON response from the API.
+            dict[str, Any]: The JSON response from the API.
 
         Raises:
             requests.RequestException: If the request fails due to network or other issues.
@@ -79,7 +75,7 @@ class GieClient(BaseGieClient):
 
         response = self.session.get(url=final_url, params=final_params)
 
-        return response.json()
+        return response.json()  # type: ignore
 
     def query_storage(
         self,
@@ -95,7 +91,7 @@ class GieClient(BaseGieClient):
         country: str | None = None,
         company: str | None = None,
         facility: str | None = None,
-    ) -> Json:
+    ) -> dict[str, Any]:
         """
         Queries the storage API endpoint with the specified parameters and returns the JSON response.
 
@@ -115,7 +111,7 @@ class GieClient(BaseGieClient):
             facility (str | None, optional): The facility name to filter the results. Defaults to None.
 
         Returns:
-            Json: The JSON response from the API containing the storage data.
+            dict[str, Any]: The JSON response from the API containing the storage data.
 
         Raises:
             ValueError: If any of the provided parameters are invalid according to the validation rules.
@@ -163,11 +159,11 @@ class GieClient(BaseGieClient):
         end: datetime.date | None = None,
         updated: datetime.date | None = None,
         type: Literal["Planned", "Unplanned"] | None = None,
-        end_flag: Literal["confirmed", "estimate"] | None = None,
+        end_flag: Literal["Confirmed", "Estimate"] | None = None,
         country: str | None = None,
         company: str | None = None,
         facility: str | None = None,
-    ) -> Json:
+    ) -> dict[str, Any]:
         """
         Queries the unavailability API endpoint with the specified parameters and returns the JSON response.
 
@@ -183,14 +179,14 @@ class GieClient(BaseGieClient):
             end (datetime.date | None, optional): The end date of the unavailability period. Defaults to None.
             updated (datetime.date | None, optional): Filter for data updated on this date. Defaults to None.
             type (Literal["Planned", "Unplanned"] | None, optional): The type of unavailability to query. Defaults to None.
-            end_flag (Literal["confirmed", "estimate"] | None, optional): Specifies whether to filter by confirmed or estimated end dates.
+            end_flag (Literal["Confirmed", "Estimate"] | None, optional): Specifies whether to filter by confirmed or estimated end dates.
                 Defaults to None.
             country (str | None, optional): Country code to filter results. Defaults to None.
             company (str | None, optional): Company name to filter results. Defaults to None.
             facility (str | None, optional): Facility name to filter results. Defaults to None.
 
         Returns:
-            Json: The JSON response from the unavailability API.
+            dict[str, Any]: The JSON response from the unavailability API.
 
         Raises:
             ValueError: If any of the provided parameters fail validation.
@@ -233,7 +229,7 @@ class GieClient(BaseGieClient):
 
     def query_eic_listing(
         self, api_type: APIType, show_listing: bool = False
-    ) -> Json:
+    ) -> dict[str, Any]:
         """
         Queries the EIC listing or general API information and returns the JSON response.
 
@@ -243,7 +239,7 @@ class GieClient(BaseGieClient):
                 Defaults to False.
 
         Returns:
-            Json: The JSON response from the API.
+            dict[str, Any]: The JSON response from the API.
 
         Raises:
             requests.RequestException: If the API request fails due to network issues or other errors.
@@ -261,7 +257,7 @@ class GieClient(BaseGieClient):
 
     def query_news_listing(
         self, api_type: APIType, news_url: str | None = None
-    ) -> Json:
+    ) -> dict[str, Any]:
         """
         Queries the news listing or specific news based on the provided URL and returns the JSON response.
 
@@ -271,7 +267,7 @@ class GieClient(BaseGieClient):
                 Defaults to None.
 
         Returns:
-            Json: The JSON response from the news API.
+            dict[str, Any]: The JSON response from the news API.
 
         Raises:
             requests.RequestException: If the API request fails due to network issues or other errors.

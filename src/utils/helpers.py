@@ -1,7 +1,7 @@
 import datetime
-from typing import Literal
+from typing import Any, Literal
+
 from src.api_models.platform import APIType
-from src.utils.cutom_types import ParamDict
 
 
 def validate_dates(
@@ -27,7 +27,7 @@ def validate_dates(
 
 def validate_input_params(
     api_type: APIType,
-    params: ParamDict,
+    params: dict[str, Any],
     request_type: Literal["storage", "unavailability"],
 ) -> None:
     """
@@ -86,7 +86,7 @@ def validate_input_params(
             request_type="storage"
         )
         # Raises ValueError: `page` param must be more than 0.
-    """
+    """  # noqa: E501
     # ----- ApiType checks -----
     if not isinstance(api_type, APIType):
         raise ValueError("The starting date must be before the end date.")
@@ -125,3 +125,11 @@ def validate_input_params(
     )
     if params["type"] and (params["type"] not in type_vars):
         raise ValueError(f"`type` must be one of {type_vars}")
+
+    # ----- End flag checks -----
+    if params.get("end_flag") and (
+        params["end_flag"] not in ["Confirmed", "Estimated"]
+    ):
+        raise ValueError(
+            "`end_flag` must be one of: ['Confirmed', 'Estimated']"
+        )

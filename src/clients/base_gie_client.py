@@ -1,12 +1,10 @@
 import datetime
 from abc import ABC, abstractmethod
-from typing import Literal
+from typing import Any, Literal
 
 import aiohttp
 import requests
-
 from src.api_models.platform import APIType
-from src.utils.cutom_types import ParamDict, Json
 
 
 class BaseGieClient(ABC):
@@ -58,9 +56,9 @@ class BaseGieClient(ABC):
     def fetch(
         self,
         api_type: APIType,
-        params: ParamDict,
+        params: dict[str, Any],
         endpoint: str | None,
-    ) -> Json:
+    ) -> dict[str, Any]:
         """
         Helper function to fetch data from different endpoints of the API based on the provided filters and parameters.
 
@@ -93,18 +91,18 @@ class BaseGieClient(ABC):
     def query_storage(
         self,
         api_type: APIType,
-        page: int | str | None,
-        reverse: str | bool | None,
-        size: int | None,
-        from_date: datetime.datetime | str | None,
-        to_date: datetime.datetime | str | None,
-        date: datetime.datetime | str | None,
-        updated: datetime.datetime | str | None,
-        type: Literal["EU", "NE", "AI"] | None,
-        country: str | None,
-        company: str | None,
-        facility: str | None,
-    ) -> Json:
+        page: int = 1,
+        reverse: Literal["true", "false", 0, 1] | None = None,
+        size: int | None = 30,
+        from_date: datetime.date | None = None,
+        to_date: datetime.date | None = None,
+        date: datetime.date | None = None,
+        updated: datetime.date | None = None,
+        type: Literal["EU", "NE", "AI"] | None = None,
+        country: str | None = None,
+        company: str | None = None,
+        facility: str | None = None,
+    ) -> dict[str, Any]:
         """
         Query storage data based on the provided filters and parameters.
 
@@ -131,19 +129,20 @@ class BaseGieClient(ABC):
     def query_unavailability(
         self,
         api_type: APIType,
-        page: int | str | None,
-        reverse: str | bool | None,
-        size: int | None,
-        from_date: datetime.datetime | str | None,
-        to_date: datetime.datetime | str | None,
-        start: datetime.datetime | str | None,
-        end: datetime.datetime | str | None,
-        type: Literal["Planned", "Unplanned"],
-        end_flag: Literal["confirmed", "estimate"],
-        country: str | None,
-        company: str | None,
-        facility: str | None,
-    ) -> Json:
+        page: int = 1,
+        reverse: Literal["true", "false", 0, 1] | None = None,
+        size: int | None = 30,
+        from_date: datetime.date | None = None,
+        to_date: datetime.date | None = None,
+        start: datetime.date | None = None,
+        end: datetime.date | None = None,
+        updated: datetime.date | None = None,
+        type: Literal["Planned", "Unplanned"] | None = None,
+        end_flag: Literal["Confirmed", "Estimate"] | None = None,
+        country: str | None = None,
+        company: str | None = None,
+        facility: str | None = None,
+    ) -> dict[str, Any]:
         """
         Query the unavailability data based on the provided filters and parameters.
 
@@ -170,7 +169,7 @@ class BaseGieClient(ABC):
     @abstractmethod
     def query_eic_listing(
         self, api_type: APIType, show_listing: bool = False
-    ) -> Json:
+    ) -> dict[str, Any]:
         """
         Query the EIC (Energy Identification Code) listing based on the provided API type.
 
@@ -186,7 +185,7 @@ class BaseGieClient(ABC):
     @abstractmethod
     def query_news_listing(
         self, api_type: APIType, news_url: str | None
-    ) -> Json:
+    ) -> dict[str, Any]:
         """
         Query the news listing or a specific news item based on the provided API type and URL.
 

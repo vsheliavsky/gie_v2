@@ -1,9 +1,8 @@
 import datetime
 
 import pytest
-
-from src.utils.helpers import validate_dates, validate_input_params
 from src.api_models.platform import APIType
+from src.utils.helpers import validate_dates, validate_input_params
 
 
 # ===== validate_dates =====
@@ -69,7 +68,7 @@ def test_validate_input_params_missing_country():
     api_type = APIType.AGSI
     with pytest.raises(
         ValueError,
-        match="`country` must be provided if `company` or `facility` are passed",
+        match="`country` must be provided if `company` or `facility` are passed",  # noqa: E501
     ):
         validate_input_params(api_type, params, "storage")
 
