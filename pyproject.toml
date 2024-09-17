@@ -73,3 +73,8 @@ version_provider = "pep621"
 update_changelog_on_bump = true
 changelog_file = "CHANGELOG.md"
 major_version_zero = true
+
+[tool.pytest.ini_options]
+addopts = ["--verbose"]
+testpaths = ["tests"]
+markers = ["async", "pandas"]
