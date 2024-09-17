@@ -257,7 +257,7 @@ class GieClient(BaseGieClient):
         """  # noqa: E501
 
         params = {"show": "listing"} if show_listing else None
-        self.fetch(api_type=api_type, params=params, endpoint="about")
+        return self.fetch(api_type=api_type, params=params, endpoint="about")
 
     def query_news_listing(
         self, api_type: APIType, news_url: str | None = None
@@ -284,4 +284,4 @@ class GieClient(BaseGieClient):
             response = query_news_listing(api_type=APIType.AGSI, news_url="371616")
         """  # noqa: E501
         params = {"url": news_url} if news_url else None
-        self.fetch(api_type=api_type, params=params, endpoint="news")
+        return self.fetch(api_type=api_type, params=params, endpoint="news")
