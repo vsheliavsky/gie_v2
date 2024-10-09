@@ -1,9 +1,10 @@
 # Project metadata
 [project]
 name="roiti-gie-client-v2"
-version="0.1.0"
+version="0.1.1"
 dependencies=[
 	"aiohttp>=3.10.5",
+	"requests>=2.32.3",
 ]
 requires-python = ">= 3.8"
 
@@ -27,6 +28,7 @@ dev = [
 	"mypy",
 	"isort",
 	"commitizen",
+	"types-requests",
 ]
 test = ["pytest"]
 
@@ -48,13 +50,17 @@ line-length = 79
 [tool.ruff.lint]
 extend-select = ["E501"]  # Add the `line-too-long` rule to the enforced rule set. By default, Ruff omits rules that
 
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 79
+
 [tool.mypy]
 python_version = "3.11"
-warn_return_any = true
+warn_return_any = false
 warn_unused_configs = true
 disallow_untyped_defs = true
 exclude = [
-    "tests", "venv", ".venv",
+    "tests", "venv", ".venv", "build"
 ]
 
 [tool.isort]
@@ -67,3 +73,8 @@ version_provider = "pep621"
 update_changelog_on_bump = true
 changelog_file = "CHANGELOG.md"
 major_version_zero = true
+
+[tool.pytest.ini_options]
+addopts = ["--verbose"]
+testpaths = ["tests"]
+markers = ["async", "pandas"]
