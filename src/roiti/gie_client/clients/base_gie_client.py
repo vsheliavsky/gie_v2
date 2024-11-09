@@ -63,24 +63,10 @@ class BaseGieClient(ABC):
         Helper function to fetch data from different endpoints of the API based on the provided filters and parameters.
 
         Parameters:
-            api_type (APIType): The type of API to fetch data from.
-            page (int | str | None): The page number or identifier for paginated results.
-            reverse (str | bool | None): Whether to reverse the order of the results. Can be a boolean or string representation of a boolean.
-            size (int | None): The number of items per page or batch to retrieve.
-            from_date (datetime.datetime | str | None): The starting date for filtering results, in datetime or string format.
-            to_date (datetime.datetime | str | None): The ending date for filtering results, in datetime or string format.
-            start (datetime.datetime | str | None): The start date or time for the data query.
-            end (datetime.datetime | str | None): The end date or time for the data query.
-            date (datetime.datetime | str | None): A specific date to query data for, in datetime or string format.
-            updated (datetime.datetime | str | None): The last updated date to filter results by.
-            type (str | None): The type of data or entity to filter results by.
-            end_flag (str | None): An optional flag to indicate if the result set has an ending marker.
-            country (str | None): The country to filter the results by.
-            company (str | None): The company name to filter the results by.
-            facility (str | None): The facility to filter the results by.
-            params (dict[str, str] | None): Additional parameters to pass to the API as key-value pairs.
-            endpoint (str | None): The specific API endpoint to query.
-            news_url_item (int | str | None): An item identifier or URL related to the news entry to fetch data for.
+            api_type (APIType): The type of API to interact with. Determines the root URL based on the `APIType` enum value.
+            params (dict[str, Any] | None): A dictionary of query parameters to include in the request.
+                Only parameters with non-None values are sent. Defaults to None, in which case no parameters are included.
+            endpoint (str | None): The specific API endpoint to append to the root URL. If None, the root URL is used.
 
         Returns:
             dict[str, Any]: A dictionary containing the fetched data from the API.

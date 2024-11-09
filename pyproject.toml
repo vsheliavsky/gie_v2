@@ -2,7 +2,7 @@
 [project]
 name = "roiti-gie-client-v2"
 version = "0.2.1"
-dependencies = ["aiohttp>=3.10.5", "requests>=2.32.3"]
+dependencies = ["requests>=2.32.3"]
 requires-python = ">= 3.8"
 
 readme = "README.md"
@@ -21,6 +21,7 @@ authors = [
 
 [project.optional-dependencies]
 dev = ["ruff", "mypy", "isort", "commitizen", "types-requests"]
+docs = ["mkdocs", "mkdocstrings-python", "mkdocs-material"]
 test = ["pytest"]
 
 # [project.urls]

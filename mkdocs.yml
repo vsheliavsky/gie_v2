@@ -1,0 +1,32 @@
+site_name: ROITI GIE client v2
+theme:
+  name: material
+  logo: roiti_logo.png
+  features:
+    - search.suggest
+    - search.highligt
+    - search.share
+  palette:
+    primary: indigo
+    accent: green
+
+plugins:
+- search
+- mkdocstrings:
+    default_handler: python
+    handlers:
+      python:
+        paths: [src/roiti/gie_client]
+        options:
+          show_source: false
+          show_root_toc_entry: true
+          show_symbol_type_heading: true
+          show_symbol_type_toc: true
+
+nav:
+  - Home: index.md
+  - Quickstart: Quickstart.md
+  - Base client: BaseClient.md
+  - Sync client: GieClient.md
+  - Async client: AsyncGieClient.md
+  - Helper functions: Helpers.md

@@ -23,14 +23,25 @@ class GieClient(BaseGieClient):
             session (requests.Session): The `requests.Session` object used for making HTTP requests.
                 If not provided, a new session is created with the API key set in the headers.
 
+        Methods:
+            fetch: Method to fetch data from a specified endpoint with various filters.
+            query_storage: Method to query storage data with filters for date, type, country, and facility.
+            query_unavailability: Method to query unavailability data with filters for planned/unplanned outages.
+            query_eic_listing: Method to query the EIC listing, optionally fetching the complete list.
+            query_news_listing: Method to query news listings or a specific news item.
+
         Example:
             # Create a GieClient instance with a custom session
-            session = requests.Session()
-            session.headers["x-key"] = "your_api_key"
+            ```
+            session = requests.Session()  
+            session.headers["x-key"] = "your_api_key"  
             client = GieClient(api_key="your_api_key", session=session)
+            ```
 
             # Create a GieClient instance with a new session
+            ```
             client = GieClient(api_key="your_api_key")
+            ```
         """  # noqa: E501
         self.api_key = api_key
 
@@ -63,8 +74,10 @@ class GieClient(BaseGieClient):
             requests.RequestException: If the request fails due to network or other issues.
 
         Example:
+           # Sends a GET request to the constructed URL and returns the JSON response.
+            ```
             response = fetch(api_type=APIType.AGSI, params={"country": "DE"})
-            # Sends a GET request to the constructed URL and returns the JSON response.
+            ```
         """  # noqa: E501
         root_url = api_type.value
         final_url = urljoin(root_url, endpoint)
@@ -118,6 +131,8 @@ class GieClient(BaseGieClient):
             requests.RequestException: If the request fails due to network issues or other errors.
 
         Example:
+            # Returns the JSON response from the API with the specified filters.
+            ```
             response = query_storage(
                 api_type=APIType.AGSI,
                 page=1,
@@ -127,7 +142,7 @@ class GieClient(BaseGieClient):
                 country="DE",
                 company="ABC Corp"
             )
-            # Returns the JSON response from the API with the specified filters.
+            ```
         """  # noqa: E501
         params = {
             "from": from_date,
@@ -193,6 +208,8 @@ class GieClient(BaseGieClient):
             requests.RequestException: If the API request fails due to network issues or other errors.
 
         Example:
+            # Queries the unavailability API endpoint and returns the response as JSON.
+            ```
             response = query_unavailability(
                 api_type=APIType.AGSI,
                 page=1,
@@ -202,7 +219,7 @@ class GieClient(BaseGieClient):
                 country="DE",
                 type="Planned"
             )
-            # Queries the unavailability API endpoint and returns the response as JSON.
+            ```
         """  # noqa: E501
         params = {
             "page": page,
@@ -246,10 +263,14 @@ class GieClient(BaseGieClient):
 
         Example:
             # Query the EIC listing
+            ```
             response = query_eic_listing(api_type=APIType.AGSI, show_listing=True)
+            ```
 
             # Query general API information
+            ```
             response = query_eic_listing(api_type=APIType.AGSI, show_listing=False)
+            ```
         """  # noqa: E501
 
         params = {"show": "listing"} if show_listing else None
@@ -274,10 +295,14 @@ class GieClient(BaseGieClient):
 
         Example:
             # Query the general news listing
+            ```
             response = query_news_listing(api_type=APIType.AGSI)
+            ```
 
             # Query a specific news item by URL
+            ```
             response = query_news_listing(api_type=APIType.AGSI, news_url="371616")
+            ```
         """  # noqa: E501
         params = {"url": news_url} if news_url else None
         return self.fetch(api_type=api_type, params=params, endpoint="news")

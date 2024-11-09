@@ -63,6 +63,7 @@ def validate_input_params(
             - `type` is not one of the allowed values depending on the `request_type`.
 
     Example:
+        # Validates the input without raising an exception.
         validate_input_params(
             api_type=APIType.STORAGE,
             params={
@@ -78,14 +79,13 @@ def validate_input_params(
             },
             request_type="storage"
         )
-        # Validates the input without raising an exception.
 
+        # Raises ValueError: `page` param must be more than 0.
         validate_input_params(
             api_type=APIType.STORAGE,
             params={"company": "ABC Corp", "facility": None, "page": 0},
             request_type="storage"
         )
-        # Raises ValueError: `page` param must be more than 0.
     """  # noqa: E501
     # ----- ApiType checks -----
     if not isinstance(api_type, APIType):
