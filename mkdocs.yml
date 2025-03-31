@@ -25,7 +25,6 @@ plugins:
 
 nav:
   - Home: index.md
-  - Quickstart: Quickstart.md
   - Base client: BaseClient.md
   - Sync client: GieClient.md
   - Async client: AsyncGieClient.md
