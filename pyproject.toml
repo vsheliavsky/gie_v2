@@ -57,7 +57,7 @@ exclude = ["tests", "venv", ".venv", "build"]
 
 [tool.isort]
 profile = "hug"
-src_paths = ["isort", "test"]
+src_paths = ["isort", "tests"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"

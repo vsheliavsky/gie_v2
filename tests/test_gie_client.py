@@ -4,8 +4,8 @@ from unittest.mock import MagicMock
 
 import pytest
 import requests
-from src.api_models.platform import APIType
-from src.clients.gie_client import GieClient
+from roiti.gie_client.api_models.platform import APIType
+from roiti.gie_client.clients.gie_client import GieClient
 
 # ===== Fixture setup =====
 

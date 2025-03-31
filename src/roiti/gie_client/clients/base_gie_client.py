@@ -4,7 +4,7 @@ from typing import Any, Literal
 
 import aiohttp
 import requests
-from src.api_models.platform import APIType
+from roiti.gie_client.api_models.platform import APIType
 
 
 class BaseGieClient(ABC):
