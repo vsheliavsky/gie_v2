@@ -1,35 +1,26 @@
 # Project metadata
 [project]
-name="roiti-gie-client-v2"
-version="0.2.0"
-dependencies=[
-	"aiohttp>=3.10.5",
-	"requests>=2.32.3",
-]
+name = "roiti-gie-client-v2"
+version = "0.2.0"
+dependencies = ["aiohttp>=3.10.5", "requests>=2.32.3"]
 requires-python = ">= 3.8"
 
 readme = "README.md"
-license = {file = "LICENSE"}
-description=""
-keywords=["", ""]
-classifiers=[
+license = { file = "LICENSE" }
+description = ""
+keywords = ["", ""]
+classifiers = [
 	"Programming Language :: Python :: 3",
 	"Operating System :: OS Independent",
 ]
 authors = [
-	{name = "Petar Petrov", email="ppetrov@roiti.com"},
-	{name = "Julia Sulstarova", email="jsulstarova@roiti.com"},
-	{name = "Vasko Sheliavsky", email="vsheliavsky@roiti.com"},
+	{ name = "Petar Petrov", email = "ppetrov@roiti.com" },
+	{ name = "Julia Sulstarova", email = "jsulstarova@roiti.com" },
+	{ name = "Vasko Sheliavsky", email = "vsheliavsky@roiti.com" },
 ]
 
 [project.optional-dependencies]
-dev = [
-	"ruff",
-	"mypy",
-	"isort",
-	"commitizen",
-	"types-requests",
-]
+dev = ["ruff", "mypy", "isort", "commitizen", "types-requests"]
 test = ["pytest"]
 
 # [project.urls]
@@ -48,7 +39,9 @@ build-backend = "setuptools.build_meta"
 line-length = 79
 
 [tool.ruff.lint]
-extend-select = ["E501"]  # Add the `line-too-long` rule to the enforced rule set. By default, Ruff omits rules that
+extend-select = [
+	"E501",
+] # Add the `line-too-long` rule to the enforced rule set. By default, Ruff omits rules that
 
 [tool.ruff.format]
 docstring-code-format = true
@@ -56,12 +49,11 @@ docstring-code-line-length = 79
 
 [tool.mypy]
 python_version = "3.11"
+mypy_path = "./src/roiti/gie_client"
 warn_return_any = false
 warn_unused_configs = true
 disallow_untyped_defs = true
-exclude = [
-    "tests", "venv", ".venv", "build"
-]
+exclude = ["tests", "venv", ".venv", "build"]
 
 [tool.isort]
 profile = "hug"
