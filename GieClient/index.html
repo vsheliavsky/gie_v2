@@ -1,0 +1,1985 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../BaseClient/">
+      
+      
+        <link rel="next" href="../AsyncGieClient/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.10">
+    
+    
+      
+        <title>Sync client - ROITI GIE client v2</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gieclient" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ROITI GIE client v2" class="md-header__button md-logo" aria-label="ROITI GIE client v2" data-md-component="logo">
+      
+  <img src="../roiti_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ROITI GIE client v2
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sync client
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ROITI GIE client v2" class="md-nav__button md-logo" aria-label="ROITI GIE client v2" data-md-component="logo">
+      
+  <img src="../roiti_logo.png" alt="logo">
+
+    </a>
+    ROITI GIE client v2
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quickstart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BaseClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base client
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Sync client
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sync client
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#clients.gie_client" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;gie_client
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;GieClient
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" GieClient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;__init__
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" __init__">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.__init__--create-a-gieclient-instance-with-a-custom-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a GieClient instance with a custom session
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.__init__--create-a-gieclient-instance-with-a-new-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a GieClient instance with a new session
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" fetch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.fetch--sends-a-get-request-to-the-constructed-url-and-returns-the-json-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sends a GET request to the constructed URL and returns the JSON response.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_eic_listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;query_eic_listing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" query_eic_listing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_eic_listing--query-the-eic-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query the EIC listing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_eic_listing--query-general-api-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query general API information
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_news_listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;query_news_listing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" query_news_listing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_news_listing--query-the-general-news-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query the general news listing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_news_listing--query-a-specific-news-item-by-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query a specific news item by URL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;query_storage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" query_storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_storage--returns-the-json-response-from-the-api-with-the-specified-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns the JSON response from the API with the specified filters.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_unavailability" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;query_unavailability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" query_unavailability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_unavailability--queries-the-unavailability-api-endpoint-and-returns-the-response-as-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Queries the unavailability API endpoint and returns the response as JSON.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AsyncGieClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Async client
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Helpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helper functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#clients.gie_client" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;gie_client
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;GieClient
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" GieClient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;__init__
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" __init__">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.__init__--create-a-gieclient-instance-with-a-custom-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a GieClient instance with a custom session
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.__init__--create-a-gieclient-instance-with-a-new-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a GieClient instance with a new session
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" fetch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.fetch--sends-a-get-request-to-the-constructed-url-and-returns-the-json-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sends a GET request to the constructed URL and returns the JSON response.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_eic_listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;query_eic_listing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" query_eic_listing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_eic_listing--query-the-eic-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query the EIC listing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_eic_listing--query-general-api-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query general API information
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_news_listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;query_news_listing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" query_news_listing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_news_listing--query-the-general-news-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query the general news listing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_news_listing--query-a-specific-news-item-by-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query a specific news item by URL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;query_storage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" query_storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_storage--returns-the-json-response-from-the-api-with-the-specified-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns the JSON response from the API with the specified filters.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_unavailability" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;query_unavailability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" query_unavailability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clients.gie_client.GieClient.query_unavailability--queries-the-unavailability-api-endpoint-and-returns-the-response-as-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Queries the unavailability API endpoint and returns the response as JSON.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="gieclient">GieClient</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="clients.gie_client"></a>
+    <div class="doc doc-contents first">
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="clients.gie_client.GieClient" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>GieClient</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="roiti.gie_client.clients.base_gie_client.BaseGieClient">BaseGieClient</span></code></p>
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="clients.gie_client.GieClient.__init__" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Client class for interacting with the GIE API.</p>
+<p>This class handles API requests and manages the API session. It requires an API key for authentication.
+If a custom <code>requests.Session</code> is not provided, a new session is created with the API key set in the headers.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="clients.gie_client.GieClient.__init__.api_key">api_key</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The API key used for authentication with the GIE API.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="clients.gie_client.GieClient.__init__.session">session</span></code></td>
+            <td>
+                  <code><span title="requests.Session">Session</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The <code>requests.Session</code> object used for making HTTP requests.
+If not provided, a new session is created with the API key set in the headers.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Functions:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr class="doc-section-item">
+              <td><code><span title="clients.gie_client.GieClient.__init__.fetch">fetch</span></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Method to fetch data from a specified endpoint with various filters.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><span title="clients.gie_client.GieClient.__init__.query_storage">query_storage</span></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Method to query storage data with filters for date, type, country, and facility.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><span title="clients.gie_client.GieClient.__init__.query_unavailability">query_unavailability</span></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Method to query unavailability data with filters for planned/unplanned outages.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><span title="clients.gie_client.GieClient.__init__.query_eic_listing">query_eic_listing</span></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Method to query the EIC listing, optionally fetching the complete list.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><span title="clients.gie_client.GieClient.__init__.query_news_listing">query_news_listing</span></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Method to query news listings or a specific news item.</p>
+                </div>
+              </td>
+            </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <h4 id="clients.gie_client.GieClient.__init__--create-a-gieclient-instance-with-a-custom-session">Create a GieClient instance with a custom session</h4>
+<pre><code>session = requests.Session()  
+session.headers[&quot;x-key&quot;] = &quot;your_api_key&quot;  
+client = GieClient(api_key=&quot;your_api_key&quot;, session=session)
+</code></pre>
+<h4 id="clients.gie_client.GieClient.__init__--create-a-gieclient-instance-with-a-new-session">Create a GieClient instance with a new session</h4>
+<pre><code>client = GieClient(api_key=&quot;your_api_key&quot;)
+</code></pre>
+</details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="clients.gie_client.GieClient.fetch" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">fetch</span><span class="p">(</span><span class="n">api_type</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Sends a GET request to a specified API endpoint with the provided parameters
+and returns the JSON response.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>api_type</code></td>
+            <td>
+                  <code><span title="roiti.gie_client.api_models.platform.APIType">APIType</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of API to interact with. Determines the root URL based on the <code>APIType</code> enum value.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>params</code></td>
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A dictionary of query parameters to include in the request.
+Only parameters with non-None values are sent. Defaults to None, in which case no parameters are included.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>endpoint</code></td>
+            <td>
+                  <code>str | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The specific API endpoint to append to the root URL. If None, the root URL is used.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>dict[str, Any]: The JSON response from the API.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="requests.RequestException">RequestException</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the request fails due to network or other issues.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <h4 id="clients.gie_client.GieClient.fetch--sends-a-get-request-to-the-constructed-url-and-returns-the-json-response">Sends a GET request to the constructed URL and returns the JSON response.</h4>
+<p><code>response = fetch(api_type=APIType.AGSI, params={"country": "DE"})</code></p>
+</details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="clients.gie_client.GieClient.query_eic_listing" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">query_eic_listing</span><span class="p">(</span><span class="n">api_type</span><span class="p">,</span> <span class="n">show_listing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Queries the EIC listing or general API information and returns the JSON response.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>api_type</code></td>
+            <td>
+                  <code><span title="roiti.gie_client.api_models.platform.APIType">APIType</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of API being queried, determining the base URL.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>show_listing</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, queries the EIC listing. If False, retrieves general information.
+Defaults to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>dict[str, Any]: The JSON response from the API.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="requests.RequestException">RequestException</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the API request fails due to network issues or other errors.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <h4 id="clients.gie_client.GieClient.query_eic_listing--query-the-eic-listing">Query the EIC listing</h4>
+<pre><code>response = query_eic_listing(api_type=APIType.AGSI, show_listing=True)
+</code></pre>
+<h4 id="clients.gie_client.GieClient.query_eic_listing--query-general-api-information">Query general API information</h4>
+<pre><code>response = query_eic_listing(api_type=APIType.AGSI, show_listing=False)
+</code></pre>
+</details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="clients.gie_client.GieClient.query_news_listing" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">query_news_listing</span><span class="p">(</span><span class="n">api_type</span><span class="p">,</span> <span class="n">news_url</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Queries the news listing or specific news based on the provided URL and returns the JSON response.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>api_type</code></td>
+            <td>
+                  <code><span title="roiti.gie_client.api_models.platform.APIType">APIType</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of API being queried, determining the base URL.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>news_url</code></td>
+            <td>
+                  <code>str | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The URL of the specific news item to query. If None, retrieves the general news listing.
+Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>dict[str, Any]: The JSON response from the news API.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="requests.RequestException">RequestException</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the API request fails due to network issues or other errors.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <h4 id="clients.gie_client.GieClient.query_news_listing--query-the-general-news-listing">Query the general news listing</h4>
+<pre><code>response = query_news_listing(api_type=APIType.AGSI)
+</code></pre>
+<h4 id="clients.gie_client.GieClient.query_news_listing--query-a-specific-news-item-by-url">Query a specific news item by URL</h4>
+<pre><code>response = query_news_listing(api_type=APIType.AGSI, news_url=&quot;371616&quot;)
+</code></pre>
+</details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="clients.gie_client.GieClient.query_storage" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">query_storage</span><span class="p">(</span><span class="n">api_type</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">from_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">updated</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">country</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">company</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">facility</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Queries the storage API endpoint with the specified parameters and returns the JSON response.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>api_type</code></td>
+            <td>
+                  <code><span title="roiti.gie_client.api_models.platform.APIType">APIType</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of API being queried, which defines the base URL.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>page</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The page number for pagination. Defaults to 1.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>reverse</code></td>
+            <td>
+                  <code><span title="typing.Literal">Literal</span>[&#39;true&#39;, &#39;false&#39;, 0, 1] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Determines if the results should be reversed.
+Accepts "true", "false", 0, or 1. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>size</code></td>
+            <td>
+                  <code>int | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The number of results per page. Defaults to 30. Must be between 1 and 300.</p>
+              </div>
+            </td>
+            <td>
+                  <code>30</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>from_date</code></td>
+            <td>
+                  <code><span title="datetime.date">date</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The start date for the query filter. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>to_date</code></td>
+            <td>
+                  <code><span title="datetime.date">date</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The end date for the query filter. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>date</code></td>
+            <td>
+                  <code><span title="datetime.date">date</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A specific date for querying data. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>updated</code></td>
+            <td>
+                  <code><span title="datetime.date">date</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A filter for querying data updated on this date. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>type</code></td>
+            <td>
+                  <code><span title="typing.Literal">Literal</span>[&#39;EU&#39;, &#39;NE&#39;, &#39;AI&#39;] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of storage data to query. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>country</code></td>
+            <td>
+                  <code>str | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The country code to filter the results. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>company</code></td>
+            <td>
+                  <code>str | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The company name to filter the results. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>facility</code></td>
+            <td>
+                  <code>str | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The facility name to filter the results. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>dict[str, Any]: The JSON response from the API containing the storage data.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If any of the provided parameters are invalid according to the validation rules.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="requests.RequestException">RequestException</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the request fails due to network issues or other errors.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <h4 id="clients.gie_client.GieClient.query_storage--returns-the-json-response-from-the-api-with-the-specified-filters">Returns the JSON response from the API with the specified filters.</h4>
+<pre><code>response = query_storage(
+    api_type=APIType.AGSI,
+    page=1,
+    size=50,
+    from_date=datetime.date(2023, 1, 1),
+    to_date=datetime.date(2023, 12, 31),
+    country=&quot;DE&quot;,
+    company=&quot;ABC Corp&quot;
+)
+</code></pre>
+</details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="clients.gie_client.GieClient.query_unavailability" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">query_unavailability</span><span class="p">(</span><span class="n">api_type</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">from_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">updated</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_flag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">country</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">company</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">facility</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Queries the unavailability API endpoint with the specified parameters and returns the JSON response.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>api_type</code></td>
+            <td>
+                  <code><span title="roiti.gie_client.api_models.platform.APIType">APIType</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of API being queried, determining the base URL.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>page</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The page number for pagination. Defaults to 1.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>reverse</code></td>
+            <td>
+                  <code><span title="typing.Literal">Literal</span>[&#39;true&#39;, &#39;false&#39;, 0, 1] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Specifies whether to reverse the results.
+Accepts "true", "false", 0, or 1. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>size</code></td>
+            <td>
+                  <code>int | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of results per page. Must be between 1 and 300. Defaults to 30.</p>
+              </div>
+            </td>
+            <td>
+                  <code>30</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>from_date</code></td>
+            <td>
+                  <code><span title="datetime.date">date</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The start date for filtering results. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>to_date</code></td>
+            <td>
+                  <code><span title="datetime.date">date</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The end date for filtering results. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>start</code></td>
+            <td>
+                  <code><span title="datetime.date">date</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The start date of the unavailability period. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>end</code></td>
+            <td>
+                  <code><span title="datetime.date">date</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The end date of the unavailability period. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>updated</code></td>
+            <td>
+                  <code><span title="datetime.date">date</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Filter for data updated on this date. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>type</code></td>
+            <td>
+                  <code><span title="typing.Literal">Literal</span>[&#39;Planned&#39;, &#39;Unplanned&#39;] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of unavailability to query. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>end_flag</code></td>
+            <td>
+                  <code><span title="typing.Literal">Literal</span>[&#39;Confirmed&#39;, &#39;Estimate&#39;] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Specifies whether to filter by confirmed or estimated end dates.
+Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>country</code></td>
+            <td>
+                  <code>str | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Country code to filter results. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>company</code></td>
+            <td>
+                  <code>str | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Company name to filter results. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>facility</code></td>
+            <td>
+                  <code>str | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Facility name to filter results. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>dict[str, Any]: The JSON response from the unavailability API.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If any of the provided parameters fail validation.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="requests.RequestException">RequestException</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the API request fails due to network issues or other errors.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <h4 id="clients.gie_client.GieClient.query_unavailability--queries-the-unavailability-api-endpoint-and-returns-the-response-as-json">Queries the unavailability API endpoint and returns the response as JSON.</h4>
+<pre><code>response = query_unavailability(
+    api_type=APIType.AGSI,
+    page=1,
+    size=50,
+    from_date=datetime.date(2023, 1, 1),
+    to_date=datetime.date(2023, 12, 31),
+    country=&quot;DE&quot;,
+    type=&quot;Planned&quot;
+)
+</code></pre>
+</details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["search.suggest", "search.highligt", "search.share"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
