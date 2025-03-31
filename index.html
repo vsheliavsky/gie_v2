@@ -10,7 +10,7 @@
       
       
       
-        <link rel="next" href="Quickstart/">
+        <link rel="next" href="BaseClient/">
       
       
       <link rel="icon" href="assets/images/favicon.png">
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-mkdocs" class="md-skip">
+        <a href="#quickstart-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -254,18 +254,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      Installation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
+  <a href="#basic-usage" class="md-nav__link">
     <span class="md-ellipsis">
-      Project layout
+      Basic Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-storage-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Storage Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-unavailability-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Unavailability Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-eic-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query EIC Listing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-news-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query News Listing
     </span>
   </a>
   
@@ -286,7 +331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Quickstart/" class="md-nav__link">
+      <a href="Quickstart.md" class="md-nav__link">
         
   
   
@@ -416,18 +461,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      Installation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
+  <a href="#basic-usage" class="md-nav__link">
     <span class="md-ellipsis">
-      Project layout
+      Basic Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-storage-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Storage Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-unavailability-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Unavailability Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-eic-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query EIC Listing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-news-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query News Listing
     </span>
   </a>
   
@@ -449,16 +539,65 @@
 
 
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
+<h1 id="quickstart-guide">Quickstart Guide</h1>
+<p>This guide provides a quick start for using the <code>GieClient</code> class to interact with the GIE API, enabling you to perform various queries such as retrieving storage data, unavailability information, EIC listings, and news updates.</p>
+<h2 id="installation"><strong>Installation</strong></h2>
+<p><code>pip install roiti-gie-v2</code></p>
+<h2 id="basic-usage"><strong>Basic Usage</strong></h2>
+<p>The GieClient class requires an API key to authenticate with the GIE API. You can get one by registering here: https://alsi.gie.eu/#/api and creating a key that's valid for both AGSI and ALSI.</p>
+<pre><code class="language-python">from XXXXX.clients import gie_client
+from XXXXX.api_models.platform import APIType
+</code></pre>
+<p>Create a client instance:
+<code>client = GieClient(api_key="your_api_key")</code></p>
+<p>Or create a client instance with a custom session:</p>
+<pre><code>session = requests.Session()
+session.headers[&quot;x-key&quot;] = &quot;your_api_key&quot;
+client = GieClient(api_key=&quot;your_api_key&quot;, session=session)
+</code></pre>
+<p>You'll also need to import the APIType you inted to query:</p>
+<pre><code>from XXXXX.api_models.platform import APIType
+</code></pre>
+<h2 id="methods-overview"><strong>Methods Overview</strong></h2>
+<p>The GieClient class includes various methods to interact with different parts of the GIE API:</p>
+<pre><code>fetch: Sends a GET request to a specified API endpoint. This serves as a base method and shouldn't be used directly.
+query_storage: Retrieves storage data with filters such as date, type, country, etc.
+query_unavailability: Retrieves data on planned or unplanned unavailability.
+query_eic_listing: Retrieves EIC listing or general API information.
+query_news_listing: Retrieves general news or a specific news item.
+</code></pre>
+<p><strong>Examples</strong></p>
+<p>Here are some examples to get you started with each method:
+Fetch Data from API</p>
+<h2 id="query-storage-data"><strong>Query Storage Data</strong></h2>
+<pre><code>import datetime
+response = client.query_storage(
+    api_type=APIType.AGSI,
+    page=1,
+    size=50,
+    from_date=datetime.date(2023, 1, 1),
+    to_date=datetime.date(2023, 12, 31),
+    country=&quot;DE&quot;
+)
+</code></pre>
+<h2 id="query-unavailability-data"><strong>Query Unavailability Data</strong></h2>
+<pre><code>response = client.query_unavailability(
+    api_type=APIType.AGSI,
+    page=1,
+    size=50,
+    from_date=datetime.date(2023, 1, 1),
+    to_date=datetime.date(2023, 12, 31),
+    country=&quot;DE&quot;,
+    type=&quot;Planned&quot;
+)
+</code></pre>
+<h2 id="query-eic-listing"><strong>Query EIC Listing</strong></h2>
+<pre><code>response = client.query_eic_listing(api_type=APIType.AGSI, show_listing=True)
+</code></pre>
+<h2 id="query-news-listing"><strong>Query News Listing</strong></h2>
+<pre><code>response = client.query_news_listing(api_type=APIType.AGSI)
+</code></pre>
+<p>For detailed parameter information and error handling, refer to the individual client documentation pages.</p>
 
 
 
