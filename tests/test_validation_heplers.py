@@ -1,8 +1,11 @@
 import datetime
 
 import pytest
-from src.api_models.platform import APIType
-from src.utils.helpers import validate_dates, validate_input_params
+from roiti.gie_client.api_models.platform import APIType
+from roiti.gie_client.utils.helpers import (
+    validate_dates,
+    validate_input_params,
+)
 
 
 # ===== validate_dates =====

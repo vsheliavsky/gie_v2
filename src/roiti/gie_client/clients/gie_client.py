@@ -3,9 +3,9 @@ from typing import Any, Literal
 from urllib.parse import urljoin
 
 import requests
-from src.api_models.platform import APIType
-from src.clients.base_gie_client import BaseGieClient
-from src.utils.helpers import validate_input_params
+from roiti.gie_client.api_models.platform import APIType
+from roiti.gie_client.clients.base_gie_client import BaseGieClient
+from roiti.gie_client.utils.helpers import validate_input_params
 
 
 class GieClient(BaseGieClient):

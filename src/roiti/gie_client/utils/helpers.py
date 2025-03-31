@@ -1,7 +1,7 @@
 import datetime
 from typing import Any, Literal
 
-from src.api_models.platform import APIType
+from roiti.gie_client.api_models.platform import APIType
 
 
 def validate_dates(
