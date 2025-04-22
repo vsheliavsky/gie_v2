@@ -87,9 +87,6 @@ def validate_input_params(
         )
         # Raises ValueError: `page` param must be more than 0.
     """  # noqa: E501
-    # ----- ApiType checks -----
-    if not isinstance(api_type, APIType):
-        raise ValueError("The starting date must be before the end date.")
 
     # ----- facility checks -----
     if not params["country"] and (params["company"] or params["facility"]):
